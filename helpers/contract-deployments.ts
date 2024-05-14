@@ -1,7 +1,7 @@
 import { EmissionManager } from "./../typechain";
 import { MockL2Pool } from "./../typechain";
 import { EMPTY_STORAGE_SLOT, ZERO_ADDRESS } from "./constants";
-import { StakedAave } from "./../typechain";
+import { StakedPSYS } from "./../typechain";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { getPoolLibraries } from "./contract-getters";
 import { tEthereumAddress, tStringTokenSmallUnits } from "./types";
@@ -30,8 +30,8 @@ import {
   STAKE_AAVE_IMPL_V2,
   STAKE_AAVE_IMPL_V3,
 } from "./deploy-ids";
-import { StakedAaveV2 } from "../typechain";
-import { StakedTokenV2Rev3 } from "../typechain";
+import { StakedPSYSV3 } from "../typechain";
+import { StakedTokenV3Rev3 } from "../typechain";
 import {
   MockAggregator,
   MockAToken,
@@ -397,7 +397,7 @@ export const deployWrappedTokenGateway = async (
     wrappedToken,
   ]);
 
-export const deployStakedAaveV3 = async ([
+export const deployStakedPSYSV3 = async ([
   stakedToken,
   rewardsToken,
   cooldownSeconds,
@@ -422,20 +422,20 @@ export const deployStakedAaveV3 = async ([
     rewardsVault,
     emissionManager,
     distributionDuration,
-    "Staked AAVE",
-    "stkAAVE",
+    "Staked PSYS",
+    "stkPSYS",
     "18",
     ZERO_ADDRESS, // gov
   ];
-  return deployContract<StakedTokenV2Rev3>(
-    "StakedTokenV2Rev3",
+  return deployContract<StakedTokenV3Rev3>(
+    "StakedTokenV3Rev3",
     args,
     undefined,
     STAKE_AAVE_IMPL_V3
   );
 };
 
-export const deployStakedAaveV2 = async ([
+export const deployStakedPSYSV2 = async ([
   stakedToken,
   rewardsToken,
   cooldownSeconds,
@@ -451,7 +451,7 @@ export const deployStakedAaveV2 = async ([
   tEthereumAddress,
   tEthereumAddress,
   string
-]): Promise<StakedAaveV2> => {
+]): Promise<StakedPSYSV3> => {
   const { deployer } = await hre.getNamedAccounts();
   const args: string[] = [
     stakedToken,
@@ -464,15 +464,15 @@ export const deployStakedAaveV2 = async ([
     ZERO_ADDRESS, // gov address
   ];
 
-  return deployContract<StakedAaveV2>(
-    "StakedAaveV2",
+  return deployContract<StakedPSYSV3>(
+    "StakedPSYSV3",
     args,
     undefined,
     STAKE_AAVE_IMPL_V2
   );
 };
 
-export const deployStakedAaveV1 = async ([
+export const deployStakedPSYSV1 = async ([
   stakedToken,
   rewardsToken,
   cooldownSeconds,
@@ -488,7 +488,7 @@ export const deployStakedAaveV1 = async ([
   tEthereumAddress,
   tEthereumAddress,
   string
-]): Promise<StakedAave> => {
+]): Promise<StakedPSYS> => {
   const { deployer } = await hre.getNamedAccounts();
   const args: string[] = [
     stakedToken,
@@ -500,8 +500,8 @@ export const deployStakedAaveV1 = async ([
     distributionDuration,
   ];
 
-  return deployContract<StakedAave>(
-    "StakedAave",
+  return deployContract<StakedPSYS>(
+    "StakedPSYS",
     args,
     undefined,
     STAKE_AAVE_IMPL_V1
@@ -522,9 +522,9 @@ export const setupStkAave = async (
 ) => {
   const { incentivesProxyAdmin } = await hre.getNamedAccounts();
   const proxyAdmin = await hre.ethers.getSigner(incentivesProxyAdmin);
-  const implRev1 = await deployStakedAaveV1(args);
-  const implRev2 = await deployStakedAaveV2(args);
-  const implRev3 = await deployStakedAaveV3(args);
+  const implRev1 = await deployStakedPSYSV1(args);
+  const implRev2 = await deployStakedPSYSV2(args);
+  const implRev3 = await deployStakedPSYSV3(args);
 
   const proxyAdminSlot = await hre.ethers.provider.getStorageAt(
     proxy.address,
@@ -535,8 +535,8 @@ export const setupStkAave = async (
     .connect(proxyAdmin)
     .interface.encodeFunctionData("initialize", [
       ZERO_ADDRESS, // gov
-      "Staked AAVE",
-      "stkAAVE",
+      "Staked PSYS",
+      "stkPSYS",
       18,
     ]);
 
@@ -557,7 +557,7 @@ export const setupStkAave = async (
         initialPayloadStkAaveRev1
       )
     );
-    console.log("- Initializing admin proxy for stkAAVE");
+    console.log("- Initializing admin proxy for stkPSYS");
   }
 
   const revisionV1 = Number((await proxyWithImpl.REVISION()).toString());
@@ -569,7 +569,7 @@ export const setupStkAave = async (
         upgradePayloadStkAaveRev2andRev3
       )
     );
-    console.log("- Upgraded stkAAVE to Revision 2");
+    console.log("- Upgraded stkPSYS to Revision 2");
   }
 
   const revisionV2 = Number((await proxyWithImpl.REVISION()).toString());
@@ -582,12 +582,12 @@ export const setupStkAave = async (
         upgradePayloadStkAaveRev2andRev3
       )
     );
-    console.log("- Upgraded stkAAVE to Revision 3");
+    console.log("- Upgraded stkPSYS to Revision 3");
   }
 
   const revisionV3 = Number((await proxyWithImpl.REVISION()).toString());
 
-  console.log("stkAAVE:");
+  console.log("stkPSYS:");
   console.log("- revision:", revisionV3);
   console.log("- name:", await proxyWithImpl.name());
   console.log("- symbol:", await proxyWithImpl.symbol());
