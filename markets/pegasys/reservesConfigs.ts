@@ -42,25 +42,25 @@ export const strategyUSDC: IReserveParams = {
   borrowableIsolation: true,
 };
 
-// export const strategyAAVE: IReserveParams = {
-//   strategy: rateStrategyVolatileOne,
-//   baseLTVAsCollateral: "5000",
-//   liquidationThreshold: "6500",
-//   liquidationBonus: "11000",
-//   liquidationProtocolFee: "1000",
-//   borrowingEnabled: false,
-//   stableBorrowRateEnabled: false,
-//   flashLoanEnabled: true,
-//   reserveDecimals: "18",
-//   aTokenImpl: eContractid.AToken,
-//   reserveFactor: "0",
-//   supplyCap: "0",
-//   borrowCap: "0",
-//   debtCeiling: "0",
-//   borrowableIsolation: false,
-// };
+export const strategyPSYS: IReserveParams = {
+  strategy: rateStrategyVolatileOne,
+  baseLTVAsCollateral: "5000",
+  liquidationThreshold: "6500",
+  liquidationBonus: "11000",
+  liquidationProtocolFee: "1000",
+  borrowingEnabled: false,
+  stableBorrowRateEnabled: false,
+  flashLoanEnabled: true,
+  reserveDecimals: "18",
+  aTokenImpl: eContractid.AToken,
+  reserveFactor: "0",
+  supplyCap: "0",
+  borrowCap: "0",
+  debtCeiling: "0",
+  borrowableIsolation: false,
+};
 
-export const strategyETH: IReserveParams = {
+export const strategyWETH: IReserveParams = {
   strategy: rateStrategyVolatileOne,
   baseLTVAsCollateral: "8000",
   liquidationThreshold: "8250",
@@ -97,7 +97,7 @@ export const strategyWSYS: IReserveParams = {
 };
 
 
-export const strategyBTC: IReserveParams = {
+export const strategyWBTC: IReserveParams = {
   strategy: rateStrategyVolatileOne,
   baseLTVAsCollateral: "7000",
   liquidationThreshold: "7500",

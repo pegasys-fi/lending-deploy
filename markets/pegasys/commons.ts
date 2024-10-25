@@ -27,12 +27,12 @@ export const CommonsConfig: ICommonConfiguration = {
   WrappedNativeTokenSymbol: "WSYS",
   ChainlinkAggregator: {
     [eEthereumNetwork.rollux]: {
-      DAI: '0x18ABcCA40dd4e234bDA4fa230673C2A0A3be4372',
       USDC: '0x4202D0EfeA0AEC3d9582d499e340dF73cF428eB2',
-      BTC: '0x6386dDfaF09f0e0517D9861BA5680CB6a0c18Dc3',
-      ETH: '0x5668E903ae1bED9b719CDf259C905103d60EAEaA',
+      WBTC: '0x6386dDfaF09f0e0517D9861BA5680CB6a0c18Dc3',
+      WETH: '0x5668E903ae1bED9b719CDf259C905103d60EAEaA',
       USDT: '0x09C3FEBc4b3e6bF01472aF47bc87a2c3301789c5',
       WSYS: '0x93fFce52f5776ad8465669b5C52548b92ed6678F',
+      // PSYS: '0x93fFce52f5776ad8465669b5C52548b92ed6678F', // TODO: we dont have it :/
     },
   },
   ReserveFactorTreasuryAddress: {
@@ -100,11 +100,11 @@ export const CommonsConfig: ICommonConfiguration = {
       liquidationThreshold: "9750",
       liquidationBonus: "10100",
       label: "Stablecoins",
-      assets: ["USDC", "USDT", "DAI"],
+      assets: ["USDC", "USDT"],
     },
   },
   L2PoolEnabled: {
-    // [eEthereumNetwork.rollux]: true,
+    [eEthereumNetwork.rollux]: true,
   },
   ParaswapRegistry: {
     // [eEthereumNetwork.rollux]: ZERO_ADDRESS

@@ -23,9 +23,7 @@ export enum EthereumNetworkNames {
 
 export enum AavePools {
   proto = "proto",
-  matic = "matic",
   amm = "amm",
-  avalanche = "avalanche",
 }
 
 export enum eContractid {
@@ -176,11 +174,10 @@ export interface iAssetCommon<T> {
   [key: string]: T;
 }
 export interface iAssetBase<T> {
-  ETH: T;
-  DAI: T;
+  WETH: T;
   USDC: T;
   USDT: T;
-  BTC: T;
+  WBTC: T;
   // USD: T;
   WSYS: T;
 }
@@ -191,16 +188,15 @@ export type iAssetsWithoutUSD<T> = Omit<iAssetBase<T>, "USD">;
 
 export type iAavePoolAssets<T> = Pick<
   iAssetsWithoutUSD<T>,
-  "DAI" | "USDC" | "WSYS" | "BTC" | "ETH" | "USDT"
+  "USDC" | "WSYS" | "WBTC" | "WETH" | "USDT"
 >;
 
 export type iLpPoolAssets<T> = Pick<
   iAssetsWithoutUSD<T>,
-  | "DAI"
   | "USDC"
   | "USDT"
-  | "BTC"
-  | "ETH"
+  | "WBTC"
+  | "WETH"
   | "WSYS"
 >;
 
@@ -211,11 +207,10 @@ export type iAavePoolTokens<T> = Omit<iAavePoolAssets<T>, "ETH">;
 export type iAssetAggregatorBase<T> = iAssetsWithoutETH<T>;
 
 export enum TokenContractId {
-  DAI = "DAI",
-  ETH = "ETH",
+  WETH = "WETH",
   USDC = "USDC",
   USDT = "USDT",
-  BTC = "BTC",
+  WBTC = "WBTC",
   WSYS = "WSYS",
 }
 
@@ -282,9 +277,7 @@ export interface iEthereumParamsPerNetwork<T> {
 
 export interface iParamsPerPool<T> {
   [AavePools.proto]: T;
-  [AavePools.matic]: T;
   [AavePools.amm]: T;
-  [AavePools.avalanche]: T;
 }
 
 export interface iBasicDistributionParams {

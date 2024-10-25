@@ -56,8 +56,7 @@
     "deploy": "if [ \"$SKIP_COMPILE\" = 'true' ]; then echo '[Warning] Skipping compilation'; else npm run compile; fi && npx hardhat deploy --no-compile",
     "test": "npm run compile && npm run test:fork",
     "test:fork": "MARKET_NAME=Pegasys FORK=rollux npx hardhat test ./tests/__setup.spec.ts ./tests/fork/check-list.spec.ts",
-    "deploy:market:pegasys:fork": "FORK=rollux MARKET_NAME=Pegasys npm run deploy",
-    "deploy:market:eth:empty:fork": "FORK=main MARKET_NAME=Ethereum npm run deploy"
+    "deploy:market:pegasys:fork": "FORK=rollux MARKET_NAME=Pegasys npm run deploy"
   },
   "peerDependencies": {
     "hardhat": "^2.6.1",
