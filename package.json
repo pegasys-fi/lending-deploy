@@ -1,6 +1,6 @@
 {
   "name": "@pollum-io/lending-deploy",
-  "version": "0.0.13",
+  "version": "0.0.16",
   "files": [
     "dist",
     "helpers",
@@ -20,8 +20,8 @@
     "@nomicfoundation/hardhat-verify": "^1.1.1",
     "@pollum-io/pegasys-stake": "0.0.2",
     "@openzeppelin/contracts": "^4.3.2",
-    "@pollum-io/lending-core": "0.0.3",
-    "@pollum-io/lending-periphery": "0.0.3",
+    "@pollum-io/lending-core": "0.0.4",
+    "@pollum-io/lending-periphery": "0.0.4",
     "@types/bluebird": "^3.5.36",
     "@types/chai": "^4.2.21",
     "@types/mkdirp": "^1.0.2",
