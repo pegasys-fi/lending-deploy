@@ -27,16 +27,15 @@ export const CommonsConfig: ICommonConfiguration = {
   WrappedNativeTokenSymbol: "WSYS",
   ChainlinkAggregator: {
     [eEthereumNetwork.rollux]: {
-      DAI: '0x18ABcCA40dd4e234bDA4fa230673C2A0A3be4372',
       USDC: '0x4202D0EfeA0AEC3d9582d499e340dF73cF428eB2',
       BTC: '0x6386dDfaF09f0e0517D9861BA5680CB6a0c18Dc3',
       ETH: '0x5668E903ae1bED9b719CDf259C905103d60EAEaA',
       USDT: '0x09C3FEBc4b3e6bF01472aF47bc87a2c3301789c5',
       WSYS: '0x93fFce52f5776ad8465669b5C52548b92ed6678F',
+      // PSYS: '0x93fFce52f5776ad8465669b5C52548b92ed6678F', // TODO: we dont have it :/
     },
   },
   ReserveFactorTreasuryAddress: {
-    // [eEthereumNetwork.rollux]: ZERO_ADDRESS,
   },
   FallbackOracle: {
     [eEthereumNetwork.rollux]: ZERO_ADDRESS,
@@ -44,53 +43,13 @@ export const CommonsConfig: ICommonConfiguration = {
   ReservesConfig: {},
   IncentivesConfig: {
     enabled: {
-      // [eEthereumNetwork.rollux]: true,
     },
     rewards: {
-
-      // [eEthereumNetwork.rollux]: {
-      //   StkAave: ZERO_ADDRESS,
-      // }
     },
     rewardsOracle: {
-      // [eEthereumNetwork.rollux]: {
-      //   StkAave: ZERO_ADDRESS,
-      // },
 
     },
     incentivesInput: {
-      // [eArbitrumNetwork.arbitrumTestnet]: [
-      //   {
-      //     emissionPerSecond: "34629756533",
-      //     duration: 7890000,
-      //     asset: "DAI",
-      //     assetType: AssetType.AToken,
-      //     reward: "CRV",
-      //     rewardOracle: "0",
-      //     transferStrategy: TransferStrategy.PullRewardsStrategy,
-      //     transferStrategyParams: "0",
-      //   },
-      //   {
-      //     emissionPerSecond: "300801036720127500",
-      //     duration: 7890000,
-      //     asset: "USDC",
-      //     assetType: AssetType.AToken,
-      //     reward: "REW",
-      //     rewardOracle: "0",
-      //     transferStrategy: TransferStrategy.PullRewardsStrategy,
-      //     transferStrategyParams: "0",
-      //   },
-      //   {
-      //     emissionPerSecond: "300801036720127500",
-      //     duration: 7890000,
-      //     asset: "LINK",
-      //     assetType: AssetType.AToken,
-      //     reward: "REW",
-      //     rewardOracle: "0",
-      //     transferStrategy: TransferStrategy.PullRewardsStrategy,
-      //     transferStrategyParams: "0",
-      //   },
-      // ],
     },
   },
   EModes: {
@@ -100,14 +59,13 @@ export const CommonsConfig: ICommonConfiguration = {
       liquidationThreshold: "9750",
       liquidationBonus: "10100",
       label: "Stablecoins",
-      assets: ["USDC", "USDT", "DAI"],
+      assets: ["USDC", "USDT"],
     },
   },
   L2PoolEnabled: {
-    // [eEthereumNetwork.rollux]: true,
+    [eEthereumNetwork.rollux]: true,
   },
   ParaswapRegistry: {
-    // [eEthereumNetwork.rollux]: ZERO_ADDRESS
   },
   FlashLoanPremiums: {
     total: 0.0005e4,

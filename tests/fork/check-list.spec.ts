@@ -11,16 +11,16 @@ makeSuite("Mainnet Check list", (testEnv: TestEnv) => {
   const zero = BigNumber.from("0");
   const depositSize = parseEther("5");
 
-  it("Check WETH price", async () => {
-    const { weth, oracle } = testEnv;
+  it("Check WSYS price", async () => {
+    const { wsys, oracle } = testEnv;
 
-    const price = await oracle.getAssetPrice(weth.address);
+    const price = await oracle.getAssetPrice(wsys.address);
 
-    expect(price).gt("0", "WETH PRICE CAN NOT BE ZERO");
+    expect(price).gt("0", "WSYS PRICE CAN NOT BE ZERO");
   });
 
-  it("Deposit WETH", async () => {
-    const { users, wrappedTokenGateway, aWETH, pool } = testEnv;
+  it("Deposit WSYS", async () => {
+    const { users, wrappedTokenGateway, aWSYS, pool } = testEnv;
 
     const user = users[1];
 
@@ -29,26 +29,26 @@ makeSuite("Mainnet Check list", (testEnv: TestEnv) => {
       .connect(user.signer)
       .depositETH(pool.address, user.address, "0", { value: depositSize });
 
-    const aTokensBalance = await aWETH.balanceOf(user.address);
+    const aTokensBalance = await aWSYS.balanceOf(user.address);
 
     expect(aTokensBalance).to.be.gt(zero);
     expect(aTokensBalance).to.be.gte(depositSize);
   });
 
-  it("Withdraw WETH - Partial", async () => {
-    const { users, wrappedTokenGateway, aWETH, pool } = testEnv;
+  it("Withdraw WSYS - Partial", async () => {
+    const { users, wrappedTokenGateway, aWSYS, pool } = testEnv;
 
     const user = users[1];
     const priorEthersBalance = await user.signer.getBalance();
-    const aTokensBalance = await aWETH.balanceOf(user.address);
+    const aTokensBalance = await aWSYS.balanceOf(user.address);
 
     expect(aTokensBalance).to.be.gt(zero, "User should have aTokens.");
 
     // Partially withdraw native ETH
-    const partialWithdraw = await parseUnitsFromToken(aWETH.address, "2");
+    const partialWithdraw = await parseUnitsFromToken(aWSYS.address, "2");
 
     // Approve the aTokens to Gateway so Gateway can withdraw and convert to Ether
-    const approveTx = await aWETH
+    const approveTx = await aWSYS
       .connect(user.signer)
       .approve(wrappedTokenGateway.address, MAX_UINT_AMOUNT);
     const { gasUsed: approveGas, effectiveGasPrice: approveGasPrice } =
@@ -63,7 +63,7 @@ makeSuite("Mainnet Check list", (testEnv: TestEnv) => {
       await waitForTx(withdrawTx);
 
     const afterPartialEtherBalance = await user.signer.getBalance();
-    const afterPartialATokensBalance = await aWETH.balanceOf(user.address);
+    const afterPartialATokensBalance = await aWSYS.balanceOf(user.address);
     const gasCosts = approveGas
       .mul(approveGasPrice)
       .add(withdrawGas.mul(withdrawGasPrice));
@@ -74,21 +74,21 @@ makeSuite("Mainnet Check list", (testEnv: TestEnv) => {
     );
     expect(afterPartialATokensBalance).to.be.equal(
       aTokensBalance.sub(partialWithdraw),
-      "User aWETH balance should be subtracted"
+      "User aWSYS balance should be subtracted"
     );
   });
 
-  it("Withdraw WETH - Full", async () => {
-    const { users, aWETH, wrappedTokenGateway, pool } = testEnv;
+  it("Withdraw WSYS - Full", async () => {
+    const { users, aWSYS, wrappedTokenGateway, pool } = testEnv;
 
     const user = users[1];
     const priorEthersBalance = await user.signer.getBalance();
-    const aTokensBalance = await aWETH.balanceOf(user.address);
+    const aTokensBalance = await aWSYS.balanceOf(user.address);
 
     expect(aTokensBalance).to.be.gt(zero, "User should have aTokens.");
 
     // Approve the aTokens to Gateway so Gateway can withdraw and convert to Ether
-    const approveTx = await aWETH
+    const approveTx = await aWSYS
       .connect(user.signer)
       .approve(wrappedTokenGateway.address, MAX_UINT_AMOUNT);
     const { gasUsed: approveGas, effectiveGasPrice: approveGasPrice } =
@@ -103,7 +103,7 @@ makeSuite("Mainnet Check list", (testEnv: TestEnv) => {
       );
 
     const afterFullEtherBalance = await user.signer.getBalance();
-    const afterFullATokensBalance = await aWETH.balanceOf(user.address);
+    const afterFullATokensBalance = await aWSYS.balanceOf(user.address);
     const gasCosts = approveGas
       .mul(approveGasPrice)
       .add(withdrawGas.mul(withdrawGasPrice));
@@ -114,12 +114,12 @@ makeSuite("Mainnet Check list", (testEnv: TestEnv) => {
     );
     expect(afterFullATokensBalance).to.be.eq(
       0,
-      "User aWETH balance should be zero"
+      "User aWSYS balance should be zero"
     );
   });
 
-  it("Borrow variable WETH and Full Repay with ETH", async () => {
-    const { users, wrappedTokenGateway, aWETH, weth, pool, helpersContract } =
+  it("Borrow variable WSYS and Full Repay with ETH", async () => {
+    const { users, wrappedTokenGateway, aWSYS, wsys, pool, helpersContract } =
       testEnv;
 
     const borrowSize = parseEther("1");
@@ -127,7 +127,7 @@ makeSuite("Mainnet Check list", (testEnv: TestEnv) => {
     const user = users[1];
 
     const { variableDebtTokenAddress } =
-      await helpersContract.getReserveTokensAddresses(weth.address);
+      await helpersContract.getReserveTokensAddresses(wsys.address);
 
     const varDebtToken = await ethers.getContractAt(
       "VariableDebtToken",
@@ -141,23 +141,23 @@ makeSuite("Mainnet Check list", (testEnv: TestEnv) => {
         .depositETH(pool.address, user.address, "0", { value: depositSize })
     );
 
-    const aTokensBalance = await aWETH.balanceOf(user.address);
+    const aTokensBalance = await aWSYS.balanceOf(user.address);
 
     expect(aTokensBalance).to.be.gt(zero);
     expect(aTokensBalance).to.be.gte(depositSize);
 
-    // Borrow WETH with WETH as collateral
+    // Borrow WSYS with WSYS as collateral
     await waitForTx(
       await pool
         .connect(user.signer)
-        .borrow(weth.address, borrowSize, "2", "0", user.address)
+        .borrow(wsys.address, borrowSize, "2", "0", user.address)
     );
 
     const debtBalance = await varDebtToken.balanceOf(user.address);
 
     expect(debtBalance).to.be.gt(zero);
 
-    // Partial Repay WETH loan with native ETH
+    // Partial Repay WSYS loan with native ETH
     const partialPayment = repaySize.div(2);
     await waitForTx(
       await wrappedTokenGateway
@@ -172,7 +172,7 @@ makeSuite("Mainnet Check list", (testEnv: TestEnv) => {
     );
     expect(debtBalanceAfterPartialRepay).to.be.lt(debtBalance);
 
-    // Full Repay WETH loan with native ETH
+    // Full Repay WSYS loan with native ETH
     await waitForTx(
       await wrappedTokenGateway
         .connect(user.signer)
@@ -187,12 +187,12 @@ makeSuite("Mainnet Check list", (testEnv: TestEnv) => {
   });
 
   it("Borrow ETH via delegateApprove ETH and repays back", async () => {
-    const { users, wrappedTokenGateway, aWETH, weth, helpersContract, pool } =
+    const { users, wrappedTokenGateway, aWSYS, wsys, helpersContract, pool } =
       testEnv;
     const borrowSize = parseEther("1");
     const user = users[2];
     const { variableDebtTokenAddress } =
-      await helpersContract.getReserveTokensAddresses(weth.address);
+      await helpersContract.getReserveTokensAddresses(wsys.address);
     const varDebtToken = await ethers.getContractAt(
       "VariableDebtToken",
       variableDebtTokenAddress
@@ -201,24 +201,24 @@ makeSuite("Mainnet Check list", (testEnv: TestEnv) => {
     const priorDebtBalance = await varDebtToken.balanceOf(user.address);
     expect(priorDebtBalance).to.be.eq(zero);
 
-    // Deposit WETH with native ETH
+    // Deposit WSYS with native ETH
     await wrappedTokenGateway
       .connect(user.signer)
       .depositETH(pool.address, user.address, "0", { value: depositSize });
 
-    const aTokensBalance = await aWETH.balanceOf(user.address);
+    const aTokensBalance = await aWSYS.balanceOf(user.address);
 
     expect(aTokensBalance).to.be.gt(zero);
     expect(aTokensBalance).to.be.gte(depositSize);
 
-    // Delegates borrowing power of WETH to WrappedTokenGateway
+    // Delegates borrowing power of WSYS to WrappedTokenGateway
     await waitForTx(
       await varDebtToken
         .connect(user.signer)
         .approveDelegation(wrappedTokenGateway.address, borrowSize)
     );
 
-    // Borrows ETH with WETH as collateral
+    // Borrows ETH with WSYS as collateral
     await waitForTx(
       await wrappedTokenGateway
         .connect(user.signer)
@@ -229,7 +229,7 @@ makeSuite("Mainnet Check list", (testEnv: TestEnv) => {
 
     expect(debtBalance).to.be.gt(zero);
 
-    // Full Repay WETH loan with native ETH
+    // Full Repay WSYS loan with native ETH
     await waitForTx(
       await wrappedTokenGateway
         .connect(user.signer)
@@ -243,7 +243,7 @@ makeSuite("Mainnet Check list", (testEnv: TestEnv) => {
     expect(debtBalanceAfterFullRepay).to.be.eq(zero);
   });
 
-  it("Should revert if receiver function receives Ether if not WETH", async () => {
+  it("Should revert if receiver function receives Ether if not WSYS", async () => {
     const { users, wrappedTokenGateway } = testEnv;
     const user = users[0];
     const amount = parseEther("1");

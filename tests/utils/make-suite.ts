@@ -20,7 +20,7 @@ import {
   StableDebtToken,
   VariableDebtToken,
   WETH9,
-  WrappedTokenGateway,
+  WrappedTokenGatewayV3,
   Faucet,
 } from "../../typechain";
 import {
@@ -57,18 +57,18 @@ export interface TestEnv {
   configurator: PoolConfigurator;
   oracle: AaveOracle;
   helpersContract: AaveProtocolDataProvider;
-  weth: WETH9;
-  aWETH: AToken;
-  dai: IERC20;
-  aDai: AToken;
+  wsys: WETH9;
+  aWSYS: AToken;
+  usdt: IERC20;
+  aUsdt: AToken;
   variableDebtDai: VariableDebtToken;
   stableDebtDai: StableDebtToken;
   aUsdc: AToken;
   usdc: IERC20;
-  aave: IERC20;
+  // aave: IERC20;
   addressesProvider: PoolAddressesProvider;
   registry: PoolAddressesProviderRegistry;
-  wrappedTokenGateway: WrappedTokenGateway;
+  wrappedTokenGateway: WrappedTokenGatewayV3;
   faucetOwnable: Faucet;
 }
 
@@ -87,141 +87,129 @@ const testEnv: TestEnv = {
   configurator: {} as PoolConfigurator,
   helpersContract: {} as AaveProtocolDataProvider,
   oracle: {} as AaveOracle,
-  weth: {} as WETH9,
-  aWETH: {} as AToken,
-  dai: {} as IERC20,
-  aDai: {} as AToken,
+  wsys: {} as WETH9,
+  aWSYS: {} as AToken,
+  usdt: {} as IERC20,
+  aUsdt: {} as AToken,
   variableDebtDai: {} as VariableDebtToken,
   stableDebtDai: {} as StableDebtToken,
   aUsdc: {} as AToken,
   usdc: {} as IERC20,
-  aave: {} as IERC20,
+  // aave: {} as IERC20,
   addressesProvider: {} as PoolAddressesProvider,
   registry: {} as PoolAddressesProviderRegistry,
-  wrappedTokenGateway: {} as WrappedTokenGateway,
+  wrappedTokenGateway: {} as WrappedTokenGatewayV3,
   faucetOwnable: {} as Faucet,
 } as TestEnv;
 
 export async function initializeMakeSuite() {
-  const poolConfig = await loadPoolConfig(MARKET_NAME as ConfigNames);
+  try {
+    const poolConfig = await loadPoolConfig(MARKET_NAME as ConfigNames);
 
-  const [_deployer, ...restSigners] = await getEthersSigners();
-  const deployer: SignerWithAddress = {
-    address: await _deployer.getAddress(),
-    signer: _deployer,
-  };
+    const [_deployer, ...restSigners] = await getEthersSigners();
+    const deployer: SignerWithAddress = {
+      address: await _deployer.getAddress(),
+      signer: _deployer,
+    };
 
-  for (const signer of restSigners) {
-    testEnv.users.push({
-      signer,
-      address: await signer.getAddress(),
-    });
-  }
+    for (const signer of restSigners) {
+      testEnv.users.push({
+        signer,
+        address: await signer.getAddress(),
+      });
+    }
 
-  const wrappedTokenGatewayArtifact = await deployments.get(
-    "WrappedTokenGatewayV3"
-  );
-  const poolArtifact = await deployments.get(POOL_PROXY_ID);
-  const configuratorArtifact = await deployments.get(
-    POOL_CONFIGURATOR_PROXY_ID
-  );
-  const addressesProviderArtifact = await deployments.get(
-    POOL_ADDRESSES_PROVIDER_ID
-  );
-  const addressesProviderRegistryArtifact = await deployments.get(
-    "PoolAddressesProviderRegistry"
-  );
-  const priceOracleArtifact = await deployments.get(ORACLE_ID);
-  const dataProviderArtifact = await deployments.get(POOL_DATA_PROVIDER);
+    // Get artifacts
+    const wrappedTokenGatewayArtifact = await deployments.get("WrappedTokenGatewayV3");
+    const poolArtifact = await deployments.get(POOL_PROXY_ID);
+    const configuratorArtifact = await deployments.get(POOL_CONFIGURATOR_PROXY_ID);
+    const addressesProviderArtifact = await deployments.get(POOL_ADDRESSES_PROVIDER_ID);
+    const addressesProviderRegistryArtifact = await deployments.get("PoolAddressesProviderRegistry");
+    const priceOracleArtifact = await deployments.get(ORACLE_ID);
+    const dataProviderArtifact = await deployments.get(POOL_DATA_PROVIDER);
 
-  testEnv.deployer = deployer;
-  testEnv.poolAdmin = deployer;
-  testEnv.emergencyAdmin = testEnv.users[1];
-  testEnv.riskAdmin = testEnv.users[2];
-  testEnv.wrappedTokenGateway = (await ethers.getContractAt(
-    "WrappedTokenGatewayV3",
-    wrappedTokenGatewayArtifact.address
-  )) as WrappedTokenGateway;
-  testEnv.pool = (await ethers.getContractAt(
-    "Pool",
-    poolArtifact.address
-  )) as Pool;
+    // Initialize main contracts
+    testEnv.deployer = deployer;
+    testEnv.poolAdmin = deployer;
+    testEnv.emergencyAdmin = testEnv.users[1];
+    testEnv.riskAdmin = testEnv.users[2];
+    testEnv.wrappedTokenGateway = await ethers.getContractAt(
+      "WrappedTokenGatewayV3",
+      wrappedTokenGatewayArtifact.address
+    ) as WrappedTokenGatewayV3;
+    testEnv.pool = await ethers.getContractAt(
+      "Pool",
+      poolArtifact.address
+    ) as Pool;
+    testEnv.configurator = await ethers.getContractAt(
+      "PoolConfigurator",
+      configuratorArtifact.address
+    ) as PoolConfigurator;
+    testEnv.addressesProvider = await ethers.getContractAt(
+      "PoolAddressesProvider",
+      addressesProviderArtifact.address
+    ) as PoolAddressesProvider;
+    testEnv.registry = await ethers.getContractAt(
+      "PoolAddressesProviderRegistry",
+      addressesProviderRegistryArtifact.address
+    ) as PoolAddressesProviderRegistry;
+    testEnv.oracle = await ethers.getContractAt(
+      "AaveOracle",
+      priceOracleArtifact.address
+    ) as AaveOracle;
+    testEnv.helpersContract = await ethers.getContractAt(
+      "AaveProtocolDataProvider",
+      dataProviderArtifact.address
+    ) as AaveProtocolDataProvider;
 
-  testEnv.configurator = (await ethers.getContractAt(
-    "PoolConfigurator",
-    configuratorArtifact.address
-  )) as PoolConfigurator;
+    // Get all tokens and their aToken versions
+    const allTokens = await testEnv.helpersContract.getAllATokens();
+    const reservesTokens = await testEnv.helpersContract.getAllReservesTokens();
 
-  testEnv.addressesProvider = (await ethers.getContractAt(
-    "PoolAddressesProvider",
-    addressesProviderArtifact.address
-  )) as PoolAddressesProvider;
+    // Find addresses for your specific tokens
+    const aUsdcAddress = allTokens.find((aToken) => aToken.symbol === "aRlxUSDC")?.tokenAddress;
+    const aUsdtAddress = allTokens.find((aToken) => aToken.symbol === "aRlxUSDT")?.tokenAddress;
+    const aWsysAddress = allTokens.find((aToken) => aToken.symbol === "aRlxWSYS")?.tokenAddress;
 
-  testEnv.registry = (await ethers.getContractAt(
-    "PoolAddressesProviderRegistry",
-    addressesProviderRegistryArtifact.address
-  )) as PoolAddressesProviderRegistry;
-  testEnv.oracle = (await ethers.getContractAt(
-    "AaveOracle",
-    priceOracleArtifact.address
-  )) as AaveOracle;
+    const usdcAddress = reservesTokens.find((token) => token.symbol === "USDC")?.tokenAddress;
+    const usdtAddress = reservesTokens.find((token) => token.symbol === "USDT")?.tokenAddress;
+    const wsysAddress = reservesTokens.find((token) => token.symbol === "WSYS")?.tokenAddress;
 
-  testEnv.helpersContract = (await ethers.getContractAt(
-    dataProviderArtifact.abi,
-    dataProviderArtifact.address
-  )) as AaveProtocolDataProvider;
+    // Get debt token addresses for DAI (since they're still in your interface)
+    const {
+      variableDebtTokenAddress: variableDebtDaiAddress,
+      stableDebtTokenAddress: stableDebtDaiAddress,
+    } = await testEnv.helpersContract.getReserveTokensAddresses(usdtAddress || "");  // Using USDT instead of DAI
 
-  const allTokens = await testEnv.helpersContract.getAllATokens();
-  const aDaiAddress = allTokens.find(
-    (aToken) => aToken.symbol === "aEthDAI"
-  )?.tokenAddress;
-  const aUsdcAddress = allTokens.find(
-    (aToken) => aToken.symbol === "aEthUSDC"
-  )?.tokenAddress;
+    // Validate that we found all required tokens
+    if (!aUsdcAddress || !aUsdtAddress || !aWsysAddress) {
+      console.error('Missing required aToken addresses');
+      process.exit(1);
+    }
+    if (!usdcAddress || !usdtAddress || !wsysAddress) {
+      console.error('Missing required token addresses');
+      process.exit(1);
+    }
 
-  const aWEthAddress = allTokens.find(
-    (aToken) => aToken.symbol === "aEthWETH"
-  )?.tokenAddress;
+    // Initialize token contracts
+    testEnv.aUsdc = await getAToken(aUsdcAddress);
+    testEnv.aUsdt = await getAToken(aUsdtAddress);
+    testEnv.aWSYS = await getAToken(aWsysAddress);
 
-  const reservesTokens = await testEnv.helpersContract.getAllReservesTokens();
+    testEnv.usdc = await getERC20(usdcAddress);
+    testEnv.usdt = await getERC20(usdtAddress);
+    testEnv.wsys = await getWETH(wsysAddress);
 
-  const daiAddress = reservesTokens.find(
-    (token) => token.symbol === "DAI"
-  )?.tokenAddress;
-  const {
-    variableDebtTokenAddress: variableDebtDaiAddress,
-    stableDebtTokenAddress: stableDebtDaiAddress,
-  } = await testEnv.helpersContract.getReserveTokensAddresses(daiAddress || "");
-  const usdcAddress = reservesTokens.find(
-    (token) => token.symbol === "USDC"
-  )?.tokenAddress;
-  const aaveAddress = reservesTokens.find(
-    (token) => token.symbol === "AAVE"
-  )?.tokenAddress;
-  const wethAddress = reservesTokens.find(
-    (token) => token.symbol === "WETH"
-  )?.tokenAddress;
+    // Initialize debt tokens (using USDT's debt tokens instead of DAI)
+    testEnv.variableDebtDai = await getVariableDebtToken(variableDebtDaiAddress);
+    testEnv.stableDebtDai = await getStableDebtToken(stableDebtDaiAddress);
 
-  if (!aDaiAddress || !aWEthAddress || !aUsdcAddress) {
-    process.exit(1);
-  }
-  if (!daiAddress || !usdcAddress || !aaveAddress || !wethAddress) {
-    process.exit(1);
-  }
-
-  testEnv.aDai = await getAToken(aDaiAddress);
-  testEnv.variableDebtDai = await getVariableDebtToken(variableDebtDaiAddress);
-  testEnv.stableDebtDai = await getStableDebtToken(stableDebtDaiAddress);
-  testEnv.aUsdc = await getAToken(aUsdcAddress);
-  testEnv.aWETH = await getAToken(aWEthAddress);
-
-  testEnv.dai = await getERC20(daiAddress);
-  testEnv.usdc = await getERC20(usdcAddress);
-  testEnv.aave = await getERC20(aaveAddress);
-  testEnv.weth = await getWETH(wethAddress);
-
-  if (isTestnetMarket(poolConfig)) {
-    testEnv.faucetOwnable = await getFaucet();
+    if (isTestnetMarket(poolConfig)) {
+      testEnv.faucetOwnable = await getFaucet();
+    }
+  } catch (error) {
+    console.error('Error in initializeMakeSuite:', error);
+    throw error;
   }
 }
 

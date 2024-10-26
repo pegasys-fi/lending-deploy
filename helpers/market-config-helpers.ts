@@ -1,6 +1,7 @@
 import { getAddress } from "ethers/lib/utils";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import Bluebird from "bluebird";
+import AaveTestMarket from "../markets/test";
 import {
   iParamsPerNetwork,
   eNetwork,
@@ -13,7 +14,6 @@ import {
   AssetType,
 } from "./types";
 import AaveMarket from "../markets/pegasys";
-import AaveTestMarket from "../markets/test";
 import { AaveProtocolDataProvider } from "../typechain";
 import {
   ATOKEN_PREFIX,
