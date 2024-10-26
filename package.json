@@ -1,6 +1,6 @@
 {
   "name": "@pollum-io/lending-deploy",
-  "version": "0.0.16",
+  "version": "0.0.20",
   "files": [
     "dist",
     "helpers",
@@ -20,8 +20,8 @@
     "@nomicfoundation/hardhat-verify": "^1.1.1",
     "@pollum-io/pegasys-stake": "0.0.2",
     "@openzeppelin/contracts": "^4.3.2",
-    "@pollum-io/lending-core": "0.0.4",
-    "@pollum-io/lending-periphery": "0.0.4",
+    "@pollum-io/lending-core": "0.0.5",
+    "@pollum-io/lending-periphery": "0.0.5",
     "@types/bluebird": "^3.5.36",
     "@types/chai": "^4.2.21",
     "@types/mkdirp": "^1.0.2",
@@ -57,10 +57,6 @@
     "test": "npm run compile && npm run test:fork",
     "test:fork": "MARKET_NAME=Pegasys FORK=rollux npx hardhat test ./tests/__setup.spec.ts ./tests/fork/check-list.spec.ts",
     "deploy:market:pegasys:fork": "FORK=rollux MARKET_NAME=Pegasys npm run deploy"
-  },
-  "peerDependencies": {
-    "hardhat": "^2.6.1",
-    "@pollum-io/lending-core": "0.0.3"
   },
   "publishConfig": {
     "registry": " https://registry.npmjs.org"

@@ -1,6 +1,7 @@
 import { getAddress } from "ethers/lib/utils";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import Bluebird from "bluebird";
+import AaveTestMarket from "../markets/test";
 import {
   iParamsPerNetwork,
   eNetwork,
@@ -81,6 +82,8 @@ export const loadPoolConfig = (configName: ConfigNames): PoolConfiguration => {
   switch (configName) {
     case ConfigNames.Aave:
       return AaveMarket;
+    case ConfigNames.Test:
+      return AaveTestMarket;
     default:
       throw new Error(
         `Unsupported pool configuration: ${configName} is not one of the supported configs ${Object.values(
