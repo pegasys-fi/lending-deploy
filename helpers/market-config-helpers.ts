@@ -13,7 +13,6 @@ import {
   AssetType,
 } from "./types";
 import AaveMarket from "../markets/pegasys";
-import AaveTestMarket from "../markets/test";
 import { AaveProtocolDataProvider } from "../typechain";
 import {
   ATOKEN_PREFIX,
@@ -82,8 +81,6 @@ export const loadPoolConfig = (configName: ConfigNames): PoolConfiguration => {
   switch (configName) {
     case ConfigNames.Aave:
       return AaveMarket;
-    case ConfigNames.Test:
-      return AaveTestMarket;
     default:
       throw new Error(
         `Unsupported pool configuration: ${configName} is not one of the supported configs ${Object.values(

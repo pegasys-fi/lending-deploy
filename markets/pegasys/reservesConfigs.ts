@@ -60,7 +60,7 @@ export const strategyPSYS: IReserveParams = {
   borrowableIsolation: false,
 };
 
-export const strategyWETH: IReserveParams = {
+export const strategyETH: IReserveParams = {
   strategy: rateStrategyVolatileOne,
   baseLTVAsCollateral: "8000",
   liquidationThreshold: "8250",
@@ -97,7 +97,7 @@ export const strategyWSYS: IReserveParams = {
 };
 
 
-export const strategyWBTC: IReserveParams = {
+export const strategyBTC: IReserveParams = {
   strategy: rateStrategyVolatileOne,
   baseLTVAsCollateral: "7000",
   liquidationThreshold: "7500",
