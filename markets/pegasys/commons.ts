@@ -21,7 +21,7 @@ export const CommonsConfig: ICommonConfiguration = {
   VariableDebtTokenNamePrefix: "Rollux",
   SymbolPrefix: "Rlx",
   ProviderId: 8080,
-  OracleQuoteCurrencyAddress: ZERO_ADDRESS,
+  OracleQuoteCurrencyAddress: '0x09C3FEBc4b3e6bF01472aF47bc87a2c3301789c5',
   OracleQuoteCurrency: "USD",
   OracleQuoteUnit: "8",
   WrappedNativeTokenSymbol: "WSYS",

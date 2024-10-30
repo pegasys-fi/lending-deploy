@@ -17,7 +17,7 @@ export const FORK_BLOCK_NUMBER = process.env.FORK_BLOCK_NUMBER
   : 0;
 const MNEMONIC_PATH = "m/44'/60'/0'/0";
 const MNEMONIC = process.env.MNEMONIC || "";
-
+const PRIVATE_KEY = process.env.PRIVATE_KEY || ""
 
 
 export const NETWORKS_RPC_URL: iParamsPerNetwork<string> = {
@@ -70,19 +70,20 @@ export const getCommonNetworkConfig = (
   blockGasLimit: DEFAULT_BLOCK_GAS_LIMIT,
   chainId,
   gasPrice: GAS_PRICE_PER_NET[networkName] || undefined,
-  ...((!!MNEMONICS[networkName] || !!MNEMONIC) && {
-    accounts: {
-      mnemonic: MNEMONICS[networkName] || MNEMONIC,
-      path: MNEMONIC_PATH,
-      initialIndex: 0,
-      count: 10,
-    },
-  }),
+  // ...((!!MNEMONICS[networkName] || !!MNEMONIC) && {
+  //   accounts: {
+  //     mnemonic: MNEMONICS[networkName] || MNEMONIC,
+  //     path: MNEMONIC_PATH,
+  //     initialIndex: 0,
+  //     count: 10,
+  //   },
+  // }),
+  accounts: [PRIVATE_KEY],
   live: LIVE_NETWORKS[networkName] || false,
 });
 
-const MNEMONICS: iParamsPerNetwork<string> = {
-};
+// const MNEMONICS: iParamsPerNetwork<string> = {
+// };
 
 export const hardhatNetworkSettings = {
   gasPrice: "auto",

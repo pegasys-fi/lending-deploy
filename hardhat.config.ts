@@ -149,8 +149,8 @@ export default {
         network: eEthereumNetwork.rollux,
         chainId: 570,
         urls: {
-          apiURL: "https://explorer.rollux.com/api",
-          browserURL: "https://explorer.rollux.com/",
+          apiURL: "https://explorer1.rollux.com/api",
+          browserURL: "https://explorer1.rollux.com/",
         },
       },
     ],
