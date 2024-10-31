@@ -174,43 +174,43 @@ export interface iAssetCommon<T> {
   [key: string]: T;
 }
 export interface iAssetBase<T> {
-  WETH: T;
+  ETH: T;
   USDC: T;
   USDT: T;
-  WBTC: T;
+  BTC: T;
   // USD: T;
   WSYS: T;
 }
 
-export type iAssetsWithoutETH<T> = Omit<iAssetBase<T>, "ETH">;
+export type iAssetsWithoutETH<T> = Omit<iAssetBase<T>, "SYS">;
 
 export type iAssetsWithoutUSD<T> = Omit<iAssetBase<T>, "USD">;
 
 export type iAavePoolAssets<T> = Pick<
   iAssetsWithoutUSD<T>,
-  "USDC" | "WSYS" | "WBTC" | "WETH" | "USDT"
+  "USDC" | "WSYS" | "BTC" | "ETH" | "USDT"
 >;
 
 export type iLpPoolAssets<T> = Pick<
   iAssetsWithoutUSD<T>,
   | "USDC"
   | "USDT"
-  | "WBTC"
-  | "WETH"
+  | "BTC"
+  | "ETH"
   | "WSYS"
 >;
 
 export type iMultiPoolsAssets<T> = iAssetCommon<T> | iAavePoolAssets<T>;
 
-export type iAavePoolTokens<T> = Omit<iAavePoolAssets<T>, "ETH">;
+export type iAavePoolTokens<T> = Omit<iAavePoolAssets<T>, "SYS">;
 
 export type iAssetAggregatorBase<T> = iAssetsWithoutETH<T>;
 
 export enum TokenContractId {
-  WETH = "WETH",
+  ETH = "ETH",
   USDC = "USDC",
   USDT = "USDT",
-  WBTC = "WBTC",
+  BTC = "BTC",
   WSYS = "WSYS",
 }
 

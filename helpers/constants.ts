@@ -54,11 +54,11 @@ export const MOCK_CHAINLINK_AGGREGATORS_PRICES: { [key: string]: string } = {
 };
 
 export const chainlinkAggregatorProxy: Record<string, string> = {
-  rollux: "0x93fFce52f5776ad8465669b5C52548b92ed6678F",
+  rollux: "0x37C0ca6562B45Dbfa54c46595C3bd654C2Ee35DE", // SYS-USD Supra Feed
 };
 
 export const chainlinkEthUsdAggregatorProxy: Record<string, string> = {
-  rollux: "0x93fFce52f5776ad8465669b5C52548b92ed6678F",
+  rollux: "0x37C0ca6562B45Dbfa54c46595C3bd654C2Ee35DE", // SYS-USD Supra Feed
 };
 
 export const ETHEREUM_SHORT_EXECUTOR =
@@ -92,10 +92,10 @@ export const DEFAULT_NAMED_ACCOUNTS = {
     default: 0,
   },
   treasuryProxyAdmin: {
-    default: 1,
+    default: 0,
   },
   incentivesProxyAdmin: {
-    default: 1,
+    default: 0,
   },
   incentivesEmissionManager: {
     default: 0,

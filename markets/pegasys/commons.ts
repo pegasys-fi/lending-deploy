@@ -21,17 +21,17 @@ export const CommonsConfig: ICommonConfiguration = {
   VariableDebtTokenNamePrefix: "Rollux",
   SymbolPrefix: "Rlx",
   ProviderId: 8080,
-  OracleQuoteCurrencyAddress: '0x09C3FEBc4b3e6bF01472aF47bc87a2c3301789c5',
+  OracleQuoteCurrencyAddress: ZERO_ADDRESS,
   OracleQuoteCurrency: "USD",
   OracleQuoteUnit: "8",
   WrappedNativeTokenSymbol: "WSYS",
   ChainlinkAggregator: {
     [eEthereumNetwork.rollux]: {
-      USDC: '0x4202D0EfeA0AEC3d9582d499e340dF73cF428eB2',
-      BTC: '0x6386dDfaF09f0e0517D9861BA5680CB6a0c18Dc3',
-      ETH: '0x5668E903ae1bED9b719CDf259C905103d60EAEaA',
-      USDT: '0x09C3FEBc4b3e6bF01472aF47bc87a2c3301789c5',
-      WSYS: '0x93fFce52f5776ad8465669b5C52548b92ed6678F',
+      USDC: '0xB5fb9ACc579cdCB2290b0D1793E2295A179459AE',
+      BTC: '0x4baCFA5b967C9464B3F6e0cBfC498BC4791DE735',
+      ETH: '0xcf07748881d1E845F47B25C4f08a0463eCd276A2',
+      USDT: '0x14a96a477316DaeCB3cB20245a5c989101A0C552',
+      WSYS: '0x37C0ca6562B45Dbfa54c46595C3bd654C2Ee35DE',
       // PSYS: '0x93fFce52f5776ad8465669b5C52548b92ed6678F', // TODO: we dont have it :/
     },
   },
