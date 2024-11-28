@@ -1,6 +1,6 @@
 // scripts/verify_all.ts
 
-import { run, ethers } from "hardhat";
+import { run } from "hardhat";
 import { DeploymentsExtension } from "hardhat-deploy/types";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 

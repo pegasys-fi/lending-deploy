@@ -1,8 +1,9 @@
 import {
-  DETERMINISTIC_DEPLOYMENT,
-  DETERMINISTIC_FACTORIES,
-  ETHERSCAN_KEY,
+  // DETERMINISTIC_DEPLOYMENT,
+  // DETERMINISTIC_FACTORIES,
+  // ETHERSCAN_KEY,
   getCommonNetworkConfig,
+  getZkSyncTestnetNetworkConfig,
   hardhatNetworkSettings,
   loadTasks,
 } from "./helpers/hardhat-config-helpers";
@@ -16,7 +17,8 @@ import "hardhat-deploy";
 import "hardhat-contract-sizer";
 import "hardhat-dependency-compiler";
 import "@nomicfoundation/hardhat-chai-matchers";
-import "@nomiclabs/hardhat-etherscan";
+import "@matterlabs/hardhat-zksync-deploy";
+import "@matterlabs/hardhat-zksync-solc";
 
 const SKIP_LOAD = process.env.SKIP_LOAD === "true";
 const TASK_FOLDERS = ["misc", "market-registry"];
@@ -31,6 +33,12 @@ export default {
     alphaSort: true,
     runOnCompile: false,
     disambiguatePaths: false,
+  },
+  zksolc: {
+    version: "1.5.7.",
+    compilerSource: "binary",
+    settings: {
+    },
   },
   solidity: {
     compilers: [
@@ -61,6 +69,9 @@ export default {
     },
     tanenbaum: getCommonNetworkConfig(eEthereumNetwork.tanenbaum, 57000),
     rollux: getCommonNetworkConfig(eEthereumNetwork.rollux, 570),
+    zkSyncTestnet: getZkSyncTestnetNetworkConfig(eEthereumNetwork.zkSyncTestnet, 300),
+    sepolia: getCommonNetworkConfig(eEthereumNetwork.sepolia, 11155111),
+
   },
   namedAccounts: {
     ...DEFAULT_NAMED_ACCOUNTS,
@@ -136,9 +147,9 @@ export default {
       "@pollum-io/pegasys-stake/contracts/StakedTokenV3.sol",
     ],
   },
-  deterministicDeployment: DETERMINISTIC_DEPLOYMENT
-    ? DETERMINISTIC_FACTORIES
-    : undefined,
+  // deterministicDeployment: DETERMINISTIC_DEPLOYMENT
+  //   ? DETERMINISTIC_FACTORIES
+  //   : undefined,
   etherscan: {
     apiKey: {
       rollux: "abc"
@@ -148,8 +159,8 @@ export default {
         network: eEthereumNetwork.rollux,
         chainId: 570,
         urls: {
-          apiURL: "https://explorer1.rollux.com/api",
-          browserURL: "https://explorer1.rollux.com/",
+          apiURL: "https://explorer.rollux.com/api",
+          browserURL: "https://explorer.rollux.com/",
         },
       },
     ],

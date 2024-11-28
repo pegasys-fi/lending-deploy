@@ -14,7 +14,9 @@ export enum eEthereumNetwork {
   tanenbaum = "tanenbaum",
   rollux = "rollux",
   coverage = "coverage",
-  hardhat = "hardhat"
+  hardhat = "hardhat",
+  zkSyncTestnet = "zkSyncTestnet",
+  sepolia = "sepolia"
 }
 
 export enum EthereumNetworkNames {
