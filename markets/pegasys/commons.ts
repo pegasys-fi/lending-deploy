@@ -32,7 +32,6 @@ export const CommonsConfig: ICommonConfiguration = {
       ETH: '0xcf07748881d1E845F47B25C4f08a0463eCd276A2',
       USDT: '0x14a96a477316DaeCB3cB20245a5c989101A0C552',
       WSYS: '0x37C0ca6562B45Dbfa54c46595C3bd654C2Ee35DE',
-      // PSYS: '0x93fFce52f5776ad8465669b5C52548b92ed6678F', // TODO: we dont have it :/
     },
   },
   ReserveFactorTreasuryAddress: {

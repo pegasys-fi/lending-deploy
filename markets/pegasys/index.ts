@@ -10,7 +10,6 @@ import {
   strategyETH,
   strategyUSDT,
   strategyWSYS,
-  // strategyPSYS
 } from "./reservesConfigs";
 
 // ----------------
@@ -31,7 +30,6 @@ export const AaveMarket: IAaveConfiguration = {
     ETH: strategyETH,
     USDT: strategyUSDT,
     WSYS: strategyWSYS,
-    // PSYS: strategyPSYS,
   },
   ReserveAssets: {
     [eEthereumNetwork.rollux]: {
@@ -40,11 +38,7 @@ export const AaveMarket: IAaveConfiguration = {
       ETH: "0xaA1c53AFd099E415208F47FCFA2C880f659E6904",
       USDT: "0x28c9c7Fb3fE3104d2116Af26cC8eF7905547349c",
       WSYS: "0x4200000000000000000000000000000000000006",
-      // PSYS: "0x4200000000000000000000000000000000000006" // TODO: Set new PSYSv2 Address
     },
-  },
-  StkAaveProxy: {
-    // [eEthereumNetwork.rollux]: '',
   },
 };
 

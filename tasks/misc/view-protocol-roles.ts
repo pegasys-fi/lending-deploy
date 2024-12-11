@@ -1,4 +1,4 @@
-import { WrappedTokenGatewayV3__factory } from "./../../typechain/factories/@pollum-io/lending-periphery/contracts/misc/WrappedTokenGatewayV3__factory";
+import { WrappedTokenGatewayV3__factory } from "./../../typechain/factories/contracts/lending-periphery/misc/WrappedTokenGatewayV3__factory";
 import { getFirstSigner } from "./../../helpers/utilities/signer";
 import { getAddressFromJson } from "./../../helpers/utilities/tx";
 import {
