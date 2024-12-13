@@ -36,6 +36,7 @@ export const LIVE_NETWORKS: iParamsPerNetwork<boolean> = {
 };
 
 const GAS_PRICE_PER_NET: iParamsPerNetwork<string | number> = {
+  [eEthereumNetwork.zkSyncTestnet]: 10000000,
 
 };
 

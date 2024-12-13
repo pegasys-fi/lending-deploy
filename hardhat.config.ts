@@ -1,12 +1,13 @@
-import { HardhatUserConfig } from "hardhat/config";
 import "@nomiclabs/hardhat-ethers";
 import "@matterlabs/hardhat-zksync";
 import "hardhat-deploy";
 import "@typechain/hardhat";
 import dotenv from "dotenv";
-dotenv.config();
+import { DEFAULT_NAMED_ACCOUNTS } from "./helpers/constants";
 
-const config: HardhatUserConfig = {
+dotenv.config();
+const PRIVATE_KEY = process.env.PRIVATE_KEY || ""
+const config = {
   defaultNetwork: "zkSyncTestnet",
   zksolc: {
     version: "1.5.3",
@@ -52,24 +53,24 @@ const config: HardhatUserConfig = {
       },
     ],
   },
+  namedAccounts: {
+    ...DEFAULT_NAMED_ACCOUNTS,
+  },
   networks: {
     zkSyncTestnet: {
-      url: "https://sepolia.era.zksync.dev",
-      ethNetwork: "sepolia",
+      url: 'https://sepolia.era.zksync.dev',
+      chainId: 300,
+      gasPrice: 10000000,
+      accounts: [PRIVATE_KEY],
+      live: true,
       zksync: true,
-      verifyURL:
-        "https://explorer.sepolia.era.zksync.dev/contract_verification",
-      accounts: process.env.PRIVATE_KEY
-        ? [process.env.PRIVATE_KEY]
-        : [],
-    },
+      verifyURL: 'https://explorer.sepolia.era.zksync.dev/contract_verification',
+      ethNetwork: 'sepolia',
+    }
   },
   typechain: {
     outDir: "typechain",
     target: "ethers-v5",
-    alwaysGenerateOverloads: true,
-    discriminateTypes: true,
-    dontOverrideCompile: false
   },
   paths: {
     sources: "./contracts",

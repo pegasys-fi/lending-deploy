@@ -20,7 +20,8 @@ export enum eEthereumNetwork {
 }
 
 export enum EthereumNetworkNames {
-  rollux = "rollux"
+  rollux = "rollux",
+  zkSyncTestnet = "zkSyncTestnet"
 }
 
 export enum AavePools {
@@ -274,6 +275,7 @@ export interface iParamsPerNetworkAll<T>
 
 export interface iEthereumParamsPerNetwork<T> {
   [eEthereumNetwork.rollux]: T;
+  [eEthereumNetwork.zkSyncTestnet]: T;
 }
 
 

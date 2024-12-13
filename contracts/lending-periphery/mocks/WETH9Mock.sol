@@ -2,7 +2,7 @@
 pragma solidity ^0.8.0;
 
 import {WETH9} from "./WETH9.sol";
-import {Ownable} from "@pollum-io/lending-core/contracts/dependencies/openzeppelin/contracts/Ownable.sol";
+import {Ownable} from "../../lending-core/dependencies/openzeppelin/contracts/Ownable.sol";
 
 contract WETH9Mock is WETH9, Ownable {
     bool internal _protected;
