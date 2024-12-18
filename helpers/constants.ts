@@ -54,11 +54,11 @@ export const MOCK_CHAINLINK_AGGREGATORS_PRICES: { [key: string]: string } = {
 };
 
 export const chainlinkAggregatorProxy: Record<string, string> = {
-  zkSyncTestnet: "0xF2638717f11aEb70eda1938Fc4BFfB942d24b97c", // SYS-USD Supra Feed
+  zkSyncTestnet: "0x5014a609A8C8B7c265A8Cf60334E340b5e434976", // SYS-USD Supra Feed
 };
 
 export const chainlinkEthUsdAggregatorProxy: Record<string, string> = {
-  zkSyncTestnet: "0xF2638717f11aEb70eda1938Fc4BFfB942d24b97c", // SYS-USD Supra Feed
+  zkSyncTestnet: "0x5014a609A8C8B7c265A8Cf60334E340b5e434976", // SYS-USD Supra Feed
 };
 
 export const ETHEREUM_SHORT_EXECUTOR =

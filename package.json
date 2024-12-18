@@ -23,7 +23,7 @@
     "dotenv": "^16.4.5",
     "ethers": "5.7.2",
     "hardhat": "^2.19.0",
-    "hardhat-deploy": "^0.11.25",
+    "hardhat-deploy": "^0.14.0",
     "jsondiffpatch": "^0.4.1",
     "mocha": "^11.0.1",
     "ts-node": "^10.9.2",
@@ -36,6 +36,6 @@
     "prepare:contracts": "ts-node scripts/copy-contracts.ts",
     "compile": "npx hardhat compile",
     "deploy:libraries": "npx hardhat deploy-zksync:libraries",
-    "deploy": "FORK=zkSyncTestnet MARKET_NAME=Pegasys npx hardhat deploy",
+    "deploy": "MARKET_NAME=Pegasys npx hardhat deploy"
   }
 }

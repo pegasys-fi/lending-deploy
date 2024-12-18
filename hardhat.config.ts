@@ -15,32 +15,32 @@ const config = {
       optimizer: {
         enabled: true,
       },
-      libraries: {
-        "contracts/lending-core/protocol/libraries/logic/PoolLogic.sol": {
-          "PoolLogic": "0x7753e0b332EA06bCb48772893e125893c1e1a1cD"
-        },
-        "contracts/lending-core/protocol/libraries/logic/BorrowLogic.sol": {
-          "BorrowLogic": "0xf5ae95B5891E6C04927D8662B26996bC8876C456"
-        },
-        "contracts/lending-core/protocol/libraries/logic/LiquidationLogic.sol": {
-          "LiquidationLogic": "0x333462C4427FA2f8ce47F1eb829362d2c2d0b470"
-        },
-        "contracts/lending-core/protocol/libraries/logic/BridgeLogic.sol": {
-          "BridgeLogic": "0xA3528CF78AcBF3e70BCED7A15070865Af3fA0C53"
-        },
-        "contracts/lending-core/protocol/libraries/logic/EModeLogic.sol": {
-          "EModeLogic": "0xaD7c3775C38Cb818F19B505E02F99daB3601adce"
-        },
-        "contracts/lending-core/protocol/libraries/logic/SupplyLogic.sol": {
-          "SupplyLogic": "0x572CDEFCC62897BCe3608f4ae5db08B2229Eb4db"
-        },
-        "contracts/lending-core/protocol/libraries/logic/FlashLoanLogic.sol": {
-          "FlashLoanLogic": "0x57e2A973b46C1d2cFE132cb3e8423c89046e223c"
-        },
-        "contracts/lending-core/protocol/libraries/logic/ConfiguratorLogic.sol": {
-          "ConfiguratorLogic": "0x897e879989a706c648463E7Ff7D654a8AfD6A667"
-        }
-      }
+        libraries: {
+              "contracts/lending-core/protocol/libraries/logic/BorrowLogic.sol": {
+                "BorrowLogic": "0x32386b53d961D38246FEcE4042F0aB39acb21B81"
+              },
+              "contracts/lending-core/protocol/libraries/logic/SupplyLogic.sol": {
+                "SupplyLogic": "0x3704598956c74fE4D48C6a797b71AC59D369c3Bb"
+              },
+              "contracts/lending-core/protocol/libraries/logic/PoolLogic.sol": {
+                "PoolLogic": "0x9620FabB9cc724D403621783234f87483dD290E3"
+              },
+              "contracts/lending-core/protocol/libraries/logic/BridgeLogic.sol": {
+                "BridgeLogic": "0xA659b1916061a388A4f654A646FBa3018a800F6A"
+              },
+              "contracts/lending-core/protocol/libraries/logic/EModeLogic.sol": {
+                "EModeLogic": "0xa0b82509e7019af6C18505238A4A75A0E6C89c6c"
+              },
+              "contracts/lending-core/protocol/libraries/logic/FlashLoanLogic.sol": {
+                "FlashLoanLogic": "0x903c49Ce08cC2Bc4219E14f8aCd0629c159D8684"
+              },
+              "contracts/lending-core/protocol/libraries/logic/LiquidationLogic.sol": {
+                "LiquidationLogic": "0xc69637317CB8eBd3EcB3F1E21E5b8CF6d10d178d"
+              },
+              "contracts/lending-core/protocol/libraries/logic/ConfiguratorLogic.sol": {
+                "ConfiguratorLogic": "0x390fFB976A2ea2680B1E9ee9046930774df602Aa"
+              }
+            }
     },
   },
   solidity: {
@@ -66,6 +66,24 @@ const config = {
       zksync: true,
       verifyURL: 'https://explorer.sepolia.era.zksync.dev/contract_verification',
       ethNetwork: 'sepolia',
+    },
+    localhost: {
+      url: 'http://127.0.0.1:8011/',
+      chainId: 260,
+      zksync: true,
+      live: false,
+      ethNetwork: "http://127.0.0.1:8545",
+      accounts: [
+        "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80"
+      ],
+      gasPrice: "auto",
+      initialBaseFeePerGas: "0",
+      blockGasLimit: 12450000,
+      throwOnTransactionFailures: true,
+      throwOnCallFailures: true,
+      saveDeployments: true,
+      allowUnlimitedContractSize: true,
+      tags: ["local"],
     }
   },
   typechain: {

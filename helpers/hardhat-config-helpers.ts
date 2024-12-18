@@ -12,11 +12,11 @@ require("dotenv").config();
 export const DEFAULT_BLOCK_GAS_LIMIT = 12450000;
 export const DEFAULT_GAS_PRICE = 8000000000;
 export const FORK = (process.env.FORK || "") as eNetwork;
-export const FORK_BLOCK_NUMBER = process.env.FORK_BLOCK_NUMBER
-  ? parseInt(process.env.FORK_BLOCK_NUMBER)
-  : 0;
-const MNEMONIC_PATH = "m/44'/60'/0'/0";
-const MNEMONIC = process.env.MNEMONIC || "";
+// export const FORK_BLOCK_NUMBER = process.env.FORK_BLOCK_NUMBER
+//   ? parseInt(process.env.FORK_BLOCK_NUMBER)
+//   : 0;
+// const MNEMONIC_PATH = "m/44'/60'/0'/0";
+// const MNEMONIC = process.env.MNEMONIC || "";
 const PRIVATE_KEY = process.env.PRIVATE_KEY || ""
 
 
@@ -40,20 +40,20 @@ const GAS_PRICE_PER_NET: iParamsPerNetwork<string | number> = {
 
 };
 
-export const buildForkConfig = ():
-  | HardhatNetworkForkingUserConfig
-  | undefined => {
-  let forkMode: HardhatNetworkForkingUserConfig | undefined;
-  if (FORK && NETWORKS_RPC_URL[FORK]) {
-    forkMode = {
-      url: NETWORKS_RPC_URL[FORK] as string,
-    };
-    if (FORK_BLOCK_NUMBER) {
-      forkMode.blockNumber = FORK_BLOCK_NUMBER;
-    }
-  }
-  return forkMode;
-};
+// export const buildForkConfig = ():
+//   | HardhatNetworkForkingUserConfig
+//   | undefined => {
+//   let forkMode: HardhatNetworkForkingUserConfig | undefined;
+//   if (FORK && NETWORKS_RPC_URL[FORK]) {
+//     forkMode = {
+//       url: NETWORKS_RPC_URL[FORK] as string,
+//     };
+//     if (FORK_BLOCK_NUMBER) {
+//       forkMode.blockNumber = FORK_BLOCK_NUMBER;
+//     }
+//   }
+//   return forkMode;
+// };
 
 export const loadTasks = (taskFolders: string[]): void =>
   taskFolders.forEach((folder) => {
@@ -103,27 +103,27 @@ export const getCommonNetworkConfig = (
 // const MNEMONICS: iParamsPerNetwork<string> = {
 // };
 
-export const hardhatNetworkSettings = {
-  gasPrice: "auto",
-  initialBaseFeePerGas: "0",
-  blockGasLimit: DEFAULT_BLOCK_GAS_LIMIT,
-  throwOnTransactionFailures: true,
-  throwOnCallFailures: true,
-  chainId: 31337,
-  forking: buildForkConfig(),
-  saveDeployments: true,
-  allowUnlimitedContractSize: true,
-  tags: ["local"],
-  accounts:
-    FORK && !!MNEMONIC
-      ? {
-        mnemonic: MNEMONIC,
-        path: MNEMONIC_PATH,
-        initialIndex: 0,
-        count: 10,
-      }
-      : undefined,
-};
+// export const hardhatNetworkSettings = {
+//   gasPrice: "auto",
+//   initialBaseFeePerGas: "0",
+//   blockGasLimit: DEFAULT_BLOCK_GAS_LIMIT,
+//   throwOnTransactionFailures: true,
+//   throwOnCallFailures: true,
+//   chainId: 31337,
+//   forking: buildForkConfig(),
+//   saveDeployments: true,
+//   allowUnlimitedContractSize: true,
+//   tags: ["local"],
+//   accounts:
+//     FORK && !!MNEMONIC
+//       ? {
+//         mnemonic: MNEMONIC,
+//         path: MNEMONIC_PATH,
+//         initialIndex: 0,
+//         count: 10,
+//       }
+//       : undefined,
+// };
 
 // export const DETERMINISTIC_FACTORIES = {
 //   "1": {

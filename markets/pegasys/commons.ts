@@ -28,10 +28,10 @@ export const CommonsConfig: ICommonConfiguration = {
   ChainlinkAggregator: {
     [eEthereumNetwork.zkSyncTestnet]: {
       USDC: '0x5014a609A8C8B7c265A8Cf60334E340b5e434976',
-      BTC: '0x38e95063B860118b47767D0a12b6C90Fc5a5Dde2',
-      ETH: '0x808bCa6Af05Dc1401482546E3E840cBFed9784aE',
-      USDT: '0x8723EDbF810226521806c71a15BBA54F55A07e37',
-      WSYS: '0x419e42aA0d636076B2c3F8AFE9629E605DED38a2',
+      BTC: '0x5014a609A8C8B7c265A8Cf60334E340b5e434976',
+      ETH: '0x5014a609A8C8B7c265A8Cf60334E340b5e434976',
+      USDT: '0x5014a609A8C8B7c265A8Cf60334E340b5e434976',
+      WSYS: '0x5014a609A8C8B7c265A8Cf60334E340b5e434976',
     },
   },
   ReserveFactorTreasuryAddress: {
@@ -62,7 +62,7 @@ export const CommonsConfig: ICommonConfiguration = {
     },
   },
   L2PoolEnabled: {
-    [eEthereumNetwork.zkSyncTestnet]: true,
+    // [eEthereumNetwork.zkSyncTestnet]: true,
   },
   ParaswapRegistry: {
   },

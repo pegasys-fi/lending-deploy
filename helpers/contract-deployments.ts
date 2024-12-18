@@ -2,7 +2,7 @@ import { EmissionManager } from "./../typechain";
 import { MockL2Pool } from "./../typechain";
 import { EMPTY_STORAGE_SLOT, ZERO_ADDRESS } from "./constants";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
-import { getPoolLibraries } from "./contract-getters";
+// import { getPoolLibraries } from "./contract-getters";
 import { tEthereumAddress, tStringTokenSmallUnits } from "./types";
 import { MintableERC20 } from "../typechain";
 import { deployContract } from "./utilities/tx";
@@ -94,18 +94,21 @@ export const deployPoolConfigurator = async () => {
 };
 
 export const deployPool = async (provider?: tEthereumAddress) => {
-  const libraries = await getPoolLibraries();
+  // const libraries = await getPoolLibraries();
   provider =
     provider ||
     (await (
       await hre.deployments.get(POOL_ADDRESSES_PROVIDER_ID)
     ).address);
 
-  return await deployContract<Pool>("Pool", [provider], libraries);
+  return await deployContract<Pool>("Pool",
+    [provider],
+    // libraries
+  );
 };
 
 export const deployMockPoolInherited = async (provider?: tEthereumAddress) => {
-  const libraries = await getPoolLibraries();
+  // const libraries = await getPoolLibraries();
   provider =
     provider ||
     (await (
@@ -115,7 +118,7 @@ export const deployMockPoolInherited = async (provider?: tEthereumAddress) => {
   return await deployContract<MockPoolInherited>(
     "MockPoolInherited",
     [provider],
-    libraries
+    // libraries
   );
 };
 
@@ -484,11 +487,11 @@ export const deployCalldataLogicLibrary = async () =>
 export const deployL2DeployerImplementation = async (
   addressesProviderAddress: tEthereumAddress
 ): Promise<L2Pool> => {
-  const commonLibraries = await getPoolLibraries();
+  // const commonLibraries = await getPoolLibraries();
   const CalldataLogic = await (await hre.deployments.get("EModeLogic")).address;
 
   return deployContract<L2Pool>("L2Pool", [addressesProviderAddress], {
-    ...commonLibraries,
+    // ...commonLibraries,
     CalldataLogic,
   });
 };
