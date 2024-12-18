@@ -233,27 +233,27 @@ export const getMockInitializableImpleV2 = async (
 ): Promise<MockInitializableImpleV2> =>
   getContract("MockInitializableImpleV2", address);
 
-export const getPoolLibraries = async (): Promise<Libraries> => {
-  const supplyLibraryArtifact = await hre.deployments.get("SupplyLogic");
-  const borrowLibraryArtifact = await hre.deployments.get("BorrowLogic");
-  const liquidationLibraryArtifact = await hre.deployments.get(
-    "LiquidationLogic"
-  );
-  const eModeLibraryArtifact = await hre.deployments.get("EModeLogic");
-  const bridgeLibraryArtifact = await hre.deployments.get("BridgeLogic");
-  const flashLoanLogicArtifact = await hre.deployments.get("FlashLoanLogic");
-  const poolLogicArtifact = await hre.deployments.get("PoolLogic");
+// export const getPoolLibraries = async (): Promise<Libraries> => {
+//   const supplyLibraryArtifact = await hre.deployments.get("SupplyLogic");
+//   const borrowLibraryArtifact = await hre.deployments.get("BorrowLogic");
+//   const liquidationLibraryArtifact = await hre.deployments.get(
+//     "LiquidationLogic"
+//   );
+//   const eModeLibraryArtifact = await hre.deployments.get("EModeLogic");
+//   const bridgeLibraryArtifact = await hre.deployments.get("BridgeLogic");
+//   const flashLoanLogicArtifact = await hre.deployments.get("FlashLoanLogic");
+//   const poolLogicArtifact = await hre.deployments.get("PoolLogic");
 
-  return {
-    LiquidationLogic: liquidationLibraryArtifact.address,
-    SupplyLogic: supplyLibraryArtifact.address,
-    EModeLogic: eModeLibraryArtifact.address,
-    FlashLoanLogic: flashLoanLogicArtifact.address,
-    BorrowLogic: borrowLibraryArtifact.address,
-    BridgeLogic: bridgeLibraryArtifact.address,
-    PoolLogic: poolLogicArtifact.address,
-  };
-};
+//   return {
+//     LiquidationLogic: liquidationLibraryArtifact.address,
+//     SupplyLogic: supplyLibraryArtifact.address,
+//     EModeLogic: eModeLibraryArtifact.address,
+//     FlashLoanLogic: flashLoanLogicArtifact.address,
+//     BorrowLogic: borrowLibraryArtifact.address,
+//     BridgeLogic: bridgeLibraryArtifact.address,
+//     PoolLogic: poolLogicArtifact.address,
+//   };
+// };
 
 export const getTestnetReserveAddressFromSymbol = async (symbol: string) => {
   const testnetReserve = await hre.deployments.get(

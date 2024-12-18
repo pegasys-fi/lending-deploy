@@ -18,4 +18,8 @@ coverage
 .coverage_contracts
 typechain
 types
-deployments
+deployments/
+cache-zk/
+deployments-zk/
+artifacts-zk/
+.zksolc-libraries-cache/

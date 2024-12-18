@@ -1,4 +1,4 @@
-import { WrappedTokenGatewayV3__factory } from "./../../typechain/factories/@pollum-io/lending-periphery/contracts/misc/WrappedTokenGatewayV3__factory";
+import { WrappedTokenGatewayV3__factory } from "./../../typechain/factories/lending-periphery/misc/WrappedTokenGatewayV3__factory";
 import { getFirstSigner } from "./../../helpers/utilities/signer";
 import { getAddressFromJson } from "./../../helpers/utilities/tx";
 import {
@@ -32,6 +32,7 @@ import {
 import { task } from "hardhat/config";
 import { getProxyAdminBySlot } from "../../helpers/utilities/tx";
 import { exit } from "process";
+import { ethers } from "ethers";
 
 task(
   `view-protocol-roles`,
@@ -87,8 +88,8 @@ task(
 
   // The Rewards Controller must be set at PoolAddressesProvider with id keccak256("INCENTIVES_CONTROLLER"):
   // 0x703c2c8634bed68d98c029c18f310e7f7ec0e5d6342c590190b3cb8b3ba54532
-  const incentivesControllerId = hre.ethers.utils.keccak256(
-    hre.ethers.utils.toUtf8Bytes("INCENTIVES_CONTROLLER")
+  const incentivesControllerId = ethers.utils.keccak256(
+    ethers.utils.toUtf8Bytes("INCENTIVES_CONTROLLER")
   );
 
   const poolAddressesProviderRegistry =

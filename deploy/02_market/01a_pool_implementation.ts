@@ -10,7 +10,7 @@ import {
   ConfigNames,
   eNetwork,
   getPool,
-  getPoolLibraries,
+  // getPoolLibraries,
   isL2PoolSupported,
   loadPoolConfig,
   waitForTx,
@@ -38,16 +38,16 @@ const func: DeployFunction = async function ({
     );
     return;
   }
-  const commonLibraries = await getPoolLibraries();
+  // const commonLibraries = await getPoolLibraries();
 
   // Deploy common Pool contract
   const poolArtifact = await deploy(POOL_IMPL_ID, {
     contract: "Pool",
     from: deployer,
     args: [addressesProviderAddress],
-    libraries: {
-      ...commonLibraries,
-    },
+    // libraries: {
+    //   ...commonLibraries,
+    // },
     ...COMMON_DEPLOY_PARAMS,
   });
 

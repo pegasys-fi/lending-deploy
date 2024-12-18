@@ -29,7 +29,7 @@ export const ONE_ADDRESS = "0x0000000000000000000000000000000000000001";
 export const AAVE_REFERRAL = "0";
 
 export const WRAPPED_NATIVE_TOKEN_PER_NETWORK: { [network: string]: string } = {
-  [eEthereumNetwork.rollux]: "0x4200000000000000000000000000000000000006",
+  [eEthereumNetwork.zkSyncTestnet]: "0x53F7e72C7ac55b44c7cd73cC13D4EF4b121678e6",
 };
 
 export const ZERO_BYTES_32 =
@@ -54,25 +54,25 @@ export const MOCK_CHAINLINK_AGGREGATORS_PRICES: { [key: string]: string } = {
 };
 
 export const chainlinkAggregatorProxy: Record<string, string> = {
-  rollux: "0x37C0ca6562B45Dbfa54c46595C3bd654C2Ee35DE", // SYS-USD Supra Feed
+  zkSyncTestnet: "0x5014a609A8C8B7c265A8Cf60334E340b5e434976", // SYS-USD Supra Feed
 };
 
 export const chainlinkEthUsdAggregatorProxy: Record<string, string> = {
-  rollux: "0x37C0ca6562B45Dbfa54c46595C3bd654C2Ee35DE", // SYS-USD Supra Feed
+  zkSyncTestnet: "0x5014a609A8C8B7c265A8Cf60334E340b5e434976", // SYS-USD Supra Feed
 };
 
 export const ETHEREUM_SHORT_EXECUTOR =
-  "0xEC2d95Fa98F69401648484A6584AeE6de586b65c";
+  "0xc84633Af14e43F00D5aaa7A47B8d0864eE6a46FB"; // deployer address
 
 export const EMPTY_STORAGE_SLOT =
   "0x0000000000000000000000000000000000000000000000000000000000000000";
 
 export const POOL_ADMIN: Record<string, string> = {
-  [eEthereumNetwork.rollux]: ETHEREUM_SHORT_EXECUTOR,
+  [eEthereumNetwork.zkSyncTestnet]: ETHEREUM_SHORT_EXECUTOR,
 };
 
 export const EMERGENCY_ADMIN: Record<string, string> = {
-  [eEthereumNetwork.rollux]: ETHEREUM_SHORT_EXECUTOR,
+  [eEthereumNetwork.zkSyncTestnet]: ETHEREUM_SHORT_EXECUTOR,
 };
 
 export const DEFAULT_NAMED_ACCOUNTS = {
