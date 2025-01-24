@@ -16,12 +16,14 @@ export enum eEthereumNetwork {
   coverage = "coverage",
   hardhat = "hardhat",
   zkSyncTestnet = "zkSyncTestnet",
-  sepolia = "sepolia"
+  sepolia = "sepolia",
+  zkSysTestnet = "zkSysTestnet"
 }
 
 export enum EthereumNetworkNames {
   rollux = "rollux",
-  zkSyncTestnet = "zkSyncTestnet"
+  zkSyncTestnet = "zkSyncTestnet",
+  zkSysTestnet = "zkSysTestnet"
 }
 
 export enum AavePools {

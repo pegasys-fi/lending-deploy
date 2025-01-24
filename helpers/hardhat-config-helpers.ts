@@ -24,6 +24,7 @@ export const NETWORKS_RPC_URL: iParamsPerNetwork<string> = {
   [eEthereumNetwork.tanenbaum]: "https://rpc-tanenbaum.rollux.com",
   [eEthereumNetwork.rollux]: "https://rpc.rollux.com",
   [eEthereumNetwork.zkSyncTestnet]: "https://sepolia.era.zksync.dev",
+  [eEthereumNetwork.zkSysTestnet]: "https://rpc-test-zk.syscoin.org/",
   [eEthereumNetwork.sepolia]: "https://1rpc.io/sepolia",
   [eEthereumNetwork.coverage]: "http://localhost:8555",
   [eEthereumNetwork.hardhat]: "http://localhost:8545",
@@ -32,6 +33,7 @@ export const NETWORKS_RPC_URL: iParamsPerNetwork<string> = {
 export const LIVE_NETWORKS: iParamsPerNetwork<boolean> = {
   [eEthereumNetwork.rollux]: true,
   [eEthereumNetwork.zkSyncTestnet]: true,
+  [eEthereumNetwork.zkSysTestnet]: true,
   [eEthereumNetwork.hardhat]: false,
 };
 
@@ -65,20 +67,20 @@ export const loadTasks = (taskFolders: string[]): void =>
       });
   });
 
-export const getZkSyncTestnetNetworkConfig = (
-  networkName: eNetwork,
-  chainId?: number
-) => ({
-  url: NETWORKS_RPC_URL[networkName] || "",
-  blockGasLimit: DEFAULT_BLOCK_GAS_LIMIT,
-  chainId,
-  gasPrice: GAS_PRICE_PER_NET[networkName] || undefined,
-  accounts: [PRIVATE_KEY],
-  live: LIVE_NETWORKS[networkName] || false,
-  zksync: true,
-  verifyURL: 'https://explorer.sepolia.era.zksync.dev/contract_verification',
-  ethNetwork: 'sepolia',
-});
+// export const getZkSyncTestnetNetworkConfig = (
+//   networkName: eNetwork,
+//   chainId?: number
+// ) => ({
+//   url: NETWORKS_RPC_URL[networkName] || "",
+//   blockGasLimit: DEFAULT_BLOCK_GAS_LIMIT,
+//   chainId,
+//   gasPrice: GAS_PRICE_PER_NET[networkName] || undefined,
+//   accounts: [PRIVATE_KEY],
+//   live: LIVE_NETWORKS[networkName] || false,
+//   zksync: true,
+//   verifyURL: 'https://explorer.sepolia.era.zksync.dev/contract_verification',
+//   ethNetwork: 'sepolia',
+// });
 
 export const getCommonNetworkConfig = (
   networkName: eNetwork,

@@ -129,7 +129,7 @@ const func: DeployFunction = async function ({
     const COOLDOWN_SECONDS = "3600";
     const UNSTAKE_WINDOW = "1800";
     const aaveTokenArtifact = await deployments.get(
-      `AAVE${TESTNET_TOKEN_PREFIX}`
+      `PSYS${TESTNET_TOKEN_PREFIX}`
     );
 
     const stakeProxy = await deployInitializableAdminUpgradeabilityProxy(

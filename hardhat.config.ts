@@ -8,7 +8,7 @@ import { DEFAULT_NAMED_ACCOUNTS } from "./helpers/constants";
 dotenv.config();
 const PRIVATE_KEY = process.env.PRIVATE_KEY || ""
 const config = {
-  defaultNetwork: "zkSyncTestnet",
+  defaultNetwork: "zkSysTestnet",
   zksolc: {
     version: "1.5.3",
     settings: {
@@ -17,28 +17,28 @@ const config = {
       },
         libraries: {
               "contracts/lending-core/protocol/libraries/logic/BorrowLogic.sol": {
-                "BorrowLogic": "0x32386b53d961D38246FEcE4042F0aB39acb21B81"
-              },
-              "contracts/lending-core/protocol/libraries/logic/SupplyLogic.sol": {
-                "SupplyLogic": "0x3704598956c74fE4D48C6a797b71AC59D369c3Bb"
-              },
-              "contracts/lending-core/protocol/libraries/logic/PoolLogic.sol": {
-                "PoolLogic": "0x9620FabB9cc724D403621783234f87483dD290E3"
-              },
-              "contracts/lending-core/protocol/libraries/logic/BridgeLogic.sol": {
-                "BridgeLogic": "0xA659b1916061a388A4f654A646FBa3018a800F6A"
-              },
-              "contracts/lending-core/protocol/libraries/logic/EModeLogic.sol": {
-                "EModeLogic": "0xa0b82509e7019af6C18505238A4A75A0E6C89c6c"
+                "BorrowLogic": "0x2E238EfF9Ebf23DcEe2196Ea5EfB3E16307fF264"
               },
               "contracts/lending-core/protocol/libraries/logic/FlashLoanLogic.sol": {
-                "FlashLoanLogic": "0x903c49Ce08cC2Bc4219E14f8aCd0629c159D8684"
+                "FlashLoanLogic": "0x4F3C90eB0D63C692EA59d2Ab2987C485eC8E1a11"
+              },
+              "contracts/lending-core/protocol/libraries/logic/PoolLogic.sol": {
+                "PoolLogic": "0x287b79720179D767251B6170fcF5D74C7950Fd8c"
+              },
+              "contracts/lending-core/protocol/libraries/logic/SupplyLogic.sol": {
+                "SupplyLogic": "0x5A74Db5df74bE3ffe97874582c633444B685F8Aa"
+              },
+              "contracts/lending-core/protocol/libraries/logic/EModeLogic.sol": {
+                "EModeLogic": "0x26bF8221838f9FCe2d954567ecc4ac64B48a7453"
+              },
+              "contracts/lending-core/protocol/libraries/logic/BridgeLogic.sol": {
+                "BridgeLogic": "0xCbA8A50575546eF7d278ab3aedb2f6464BA74De3"
               },
               "contracts/lending-core/protocol/libraries/logic/LiquidationLogic.sol": {
-                "LiquidationLogic": "0xc69637317CB8eBd3EcB3F1E21E5b8CF6d10d178d"
+                "LiquidationLogic": "0x92173b82F2D60D9002FC22f45dA3602A52a965d3"
               },
               "contracts/lending-core/protocol/libraries/logic/ConfiguratorLogic.sol": {
-                "ConfiguratorLogic": "0x390fFB976A2ea2680B1E9ee9046930774df602Aa"
+                "ConfiguratorLogic": "0x117359aE22d7be8B2A411565B06CE178FD78cB0e"
               }
             }
     },
@@ -65,6 +65,16 @@ const config = {
       live: true,
       zksync: true,
       verifyURL: 'https://explorer.sepolia.era.zksync.dev/contract_verification',
+      ethNetwork: 'sepolia',
+    },
+    zkSysTestnet: {
+      url: 'https://rpc-test-zk.syscoin.org/',
+      chainId: 5701,
+      gasPrice: 10000000,
+      accounts: [PRIVATE_KEY],
+      live: false,
+      zksync: true,
+      verifyURL: 'https://explorer-test-zk.syscoin.org/contract_verification',
       ethNetwork: 'sepolia',
     },
     localhost: {

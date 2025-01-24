@@ -455,7 +455,7 @@ export const setupStkAave = async (
   if (proxyAdminSlot === EMPTY_STORAGE_SLOT) {
     await (await stkProxy["initialize(address,address,bytes)"](
       implRev3.address,
-      deployer.address,
+      implRev3.address,
       initialPayloadStakedPSYSV3
     )).wait();
     console.log("- Initializing admin proxy for stkPSYS");

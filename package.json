@@ -36,6 +36,7 @@
     "prepare:contracts": "ts-node scripts/copy-contracts.ts",
     "compile": "npx hardhat compile",
     "deploy:libraries": "npx hardhat deploy-zksync:libraries",
-    "deploy": "MARKET_NAME=Pegasys npx hardhat deploy"
+    "deploy": "MARKET_NAME=Pegasys npx hardhat deploy",
+    "deploy-testnet": "MARKET_NAME=Test npx hardhat deploy"
   }
 }

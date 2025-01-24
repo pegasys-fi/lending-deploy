@@ -129,3 +129,77 @@ export const strategyUSDT = {
     debtCeiling: "1000000",
     borrowableIsolation: true,
 };
+
+
+export const strategyPSYS: IReserveParams = {
+    strategy: rateStrategyVolatileOne,
+    baseLTVAsCollateral: "5000",
+    liquidationThreshold: "6500",
+    liquidationBonus: "11000",
+    liquidationProtocolFee: "1000",
+    borrowingEnabled: false,
+    stableBorrowRateEnabled: false,
+    flashLoanEnabled: true,
+    reserveDecimals: "18",
+    aTokenImpl: eContractid.AToken,
+    reserveFactor: "0",
+    supplyCap: "0",
+    borrowCap: "0",
+    debtCeiling: "0",
+    borrowableIsolation: false,
+};
+
+export const strategyETH: IReserveParams = {
+    strategy: rateStrategyVolatileOne,
+    baseLTVAsCollateral: "8000",
+    liquidationThreshold: "8250",
+    liquidationBonus: "10500",
+    liquidationProtocolFee: "1000",
+    borrowingEnabled: true,
+    stableBorrowRateEnabled: false,
+    flashLoanEnabled: true,
+    reserveDecimals: "18",
+    aTokenImpl: eContractid.AToken,
+    reserveFactor: "1000",
+    supplyCap: "0",
+    borrowCap: "0",
+    debtCeiling: "0",
+    borrowableIsolation: false,
+};
+
+export const strategyWSYS: IReserveParams = {
+    strategy: rateStrategyVolatileOne,
+    baseLTVAsCollateral: "8000",
+    liquidationThreshold: "8250",
+    liquidationBonus: "10500",
+    liquidationProtocolFee: "1000",
+    borrowingEnabled: true,
+    stableBorrowRateEnabled: false,
+    flashLoanEnabled: true,
+    reserveDecimals: "18",
+    aTokenImpl: eContractid.AToken,
+    reserveFactor: "1000",
+    supplyCap: "0",
+    borrowCap: "0",
+    debtCeiling: "0",
+    borrowableIsolation: false,
+};
+
+
+export const strategyBTC: IReserveParams = {
+    strategy: rateStrategyVolatileOne,
+    baseLTVAsCollateral: "7000",
+    liquidationThreshold: "7500",
+    liquidationBonus: "11000",
+    liquidationProtocolFee: "1000",
+    borrowingEnabled: true,
+    stableBorrowRateEnabled: false,
+    flashLoanEnabled: true,
+    reserveDecimals: "8",
+    aTokenImpl: eContractid.AToken,
+    reserveFactor: "2000",
+    supplyCap: "0",
+    borrowCap: "0",
+    debtCeiling: "0",
+    borrowableIsolation: false,
+};
