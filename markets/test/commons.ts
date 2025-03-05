@@ -25,7 +25,8 @@ export const CommonsConfig: ICommonConfiguration = {
     OracleQuoteCurrencyAddress: ZERO_ADDRESS,
     OracleQuoteCurrency: "USD",
     OracleQuoteUnit: "8",
-    WrappedNativeTokenSymbol: "WETH",
+    WrappedNativeTokenSymbol: "WSYS",
+    TestnetMarket: true,
     ChainlinkAggregator: {
 
     },
@@ -39,21 +40,22 @@ export const CommonsConfig: ICommonConfiguration = {
     IncentivesConfig: {
         enabled: {
             [eEthereumNetwork.hardhat]: true,
+            [eEthereumNetwork.zkSysTestnet]: true,
         },
         rewards: {
             [eEthereumNetwork.hardhat]: {
                 CRV: ZERO_ADDRESS,
                 REW: ZERO_ADDRESS,
                 BAL: ZERO_ADDRESS,
-                StkAave: ZERO_ADDRESS,
+                stkPSYS: ZERO_ADDRESS,
+            },
+            [eEthereumNetwork.zkSysTestnet]: {
+                stkPSYS: ZERO_ADDRESS,
             },
         },
         rewardsOracle: {
-            [eEthereumNetwork.hardhat]: {
-                CRV: ZERO_ADDRESS,
-                REW: ZERO_ADDRESS,
-                BAL: ZERO_ADDRESS,
-                StkAave: ZERO_ADDRESS,
+            [eEthereumNetwork.zkSysTestnet]: {
+                stkPSYS: ZERO_ADDRESS,
             },
         },
         incentivesInput: {
@@ -79,6 +81,28 @@ export const CommonsConfig: ICommonConfiguration = {
                     transferStrategyParams: "0",
                 },
             ],
+            [eEthereumNetwork.zkSysTestnet]: [
+                {
+                    emissionPerSecond: "34629756533",
+                    duration: 7890000,
+                    asset: "USDC",
+                    assetType: AssetType.AToken,
+                    reward: "stkPSYS",
+                    rewardOracle: "0",
+                    transferStrategy: TransferStrategy.PullRewardsStrategy,
+                    transferStrategyParams: "0",
+                },
+                {
+                    emissionPerSecond: "34629756533",
+                    duration: 7890000,
+                    asset: "BTC",
+                    assetType: AssetType.AToken,
+                    reward: "stkPSYS",
+                    rewardOracle: "0",
+                    transferStrategy: TransferStrategy.PullRewardsStrategy,
+                    transferStrategyParams: "0",
+                },
+            ],
         },
     },
     EModes: {
@@ -88,7 +112,7 @@ export const CommonsConfig: ICommonConfiguration = {
             liquidationThreshold: "9850",
             liquidationBonus: "10100",
             label: "Stable-EMode",
-            assets: ["USDC", "DAI"],
+            assets: ["USDC", "USDT"],
         },
     },
     FlashLoanPremiums: {

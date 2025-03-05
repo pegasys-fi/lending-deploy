@@ -1,21 +1,25 @@
 {
     "compilerOptions": {
-        "target": "es2018",
-        "module": "commonjs",
-        "strict": true,
-        "esModuleInterop": true,
-        "outDir": "dist",
-        "importHelpers": false,
-        "resolveJsonModule": true
+      "target": "es2018",
+      "module": "commonjs",
+      "strict": true,
+      "esModuleInterop": true,
+      "outDir": "dist",
+      "declaration": true,
+      "resolveJsonModule": true,
+      "baseUrl": ".",
+      "paths": {
+        "*": ["node_modules/*"],
+        "typechain/*": ["typechain/*"]
+      }
     },
     "include": [
-        "deploy",
-        "tasks",
-        "helpers",
-        "typechain",
-        "tests",
-        "markets"
-     ],
-     "files": ["./hardhat.config.ts"]
-
-}
+      "hardhat.config.ts",
+      "helpers/**/*.ts",
+      "tasks/**/*.ts",
+      "test/**/*.ts",
+      "deploy/**/*.ts",
+      "typechain/**/*.ts",
+      "typechain/**/*.d.ts"
+    ]
+  }

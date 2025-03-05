@@ -1,4 +1,7 @@
-import { getPool, getPoolLibraries } from "../../helpers/contract-getters";
+import {
+  getPool,
+  // getPoolLibraries 
+} from "../../helpers/contract-getters";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/types";
 import { COMMON_DEPLOY_PARAMS } from "../../helpers/env";
@@ -38,22 +41,22 @@ const func: DeployFunction = async function ({
     POOL_ADDRESSES_PROVIDER_ID
   );
 
-  const commonLibraries = await getPoolLibraries();
+  // const commonLibraries = await getPoolLibraries();
 
   // Deploy L2 libraries
-  const calldataLogicLibrary = await deploy("CalldataLogic", {
-    from: deployer,
-  });
+  // const calldataLogicLibrary = await deploy("CalldataLogic", {
+  //   from: deployer,
+  // });
 
   // Deploy L2 supported Pool
   const poolArtifact = await deploy(L2_POOL_IMPL_ID, {
     contract: "L2Pool",
     from: deployer,
     args: [addressesProviderAddress],
-    libraries: {
-      ...commonLibraries,
-      CalldataLogic: calldataLogicLibrary.address,
-    },
+    // libraries: {
+    //   ...commonLibraries,
+    //   CalldataLogic: calldataLogicLibrary.address,
+    // },
     ...COMMON_DEPLOY_PARAMS,
   });
 

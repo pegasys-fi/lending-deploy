@@ -6,7 +6,7 @@ export * from "./hardhat-config-helpers";
 export * from "./init-helpers";
 export * from "./market-config-helpers";
 export * from "./types";
-export * from "./utilities/defender";
+// export * from "./utilities/defender";
 export * from "./utilities/fork";
 export * from "./utilities/tx";
 export * from "./utilities/utils";

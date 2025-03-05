@@ -18,15 +18,15 @@ const func: DeployFunction = async function ({
     POOL_ADDRESSES_PROVIDER_ID
   );
 
-  const configuratorLogicArtifact = await get("ConfiguratorLogic");
+  // const configuratorLogicArtifact = await get("ConfiguratorLogic");
 
   const poolConfigArtifact = await deploy(POOL_CONFIGURATOR_IMPL_ID, {
     contract: "PoolConfigurator",
     from: deployer,
     args: [],
-    libraries: {
-      ConfiguratorLogic: configuratorLogicArtifact.address,
-    },
+    // libraries: {
+    //   ConfiguratorLogic: configuratorLogicArtifact.address,
+    // },
     ...COMMON_DEPLOY_PARAMS,
   });
 

@@ -10,7 +10,6 @@ import {
   strategyETH,
   strategyUSDT,
   strategyWSYS,
-  // strategyPSYS
 } from "./reservesConfigs";
 
 // ----------------
@@ -31,20 +30,15 @@ export const AaveMarket: IAaveConfiguration = {
     ETH: strategyETH,
     USDT: strategyUSDT,
     WSYS: strategyWSYS,
-    // PSYS: strategyPSYS,
   },
   ReserveAssets: {
-    [eEthereumNetwork.rollux]: {
-      USDC: "0x368433CaC2A0B8D76E64681a9835502a1f2A8A30",
-      BTC: "0x2A4DC2e946b92AB4a1f7D62844EB237788F9056c",
-      ETH: "0xaA1c53AFd099E415208F47FCFA2C880f659E6904",
-      USDT: "0x28c9c7Fb3fE3104d2116Af26cC8eF7905547349c",
-      WSYS: "0x4200000000000000000000000000000000000006",
-      // PSYS: "0x4200000000000000000000000000000000000006" // TODO: Set new PSYSv2 Address
+    [eEthereumNetwork.zkSyncTestnet]: {
+      USDC: '0x09Cf6537FD8de30Fb309B464499ad93bF7ecba55',
+      BTC: '0x50A082713419A934bBeE0Bae2b7bD5e50980E017',
+      ETH: '0x8Bd59448D3cB58A2c4Af2DeC01078e6b39438e89',
+      USDT: '0x707d4ce20E4884320d31C78da748C977d01a3c2f',
+      WSYS: "0x53F7e72C7ac55b44c7cd73cC13D4EF4b121678e6",
     },
-  },
-  StkAaveProxy: {
-    // [eEthereumNetwork.rollux]: '',
   },
 };
 

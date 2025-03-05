@@ -14,11 +14,16 @@ export enum eEthereumNetwork {
   tanenbaum = "tanenbaum",
   rollux = "rollux",
   coverage = "coverage",
-  hardhat = "hardhat"
+  hardhat = "hardhat",
+  zkSyncTestnet = "zkSyncTestnet",
+  sepolia = "sepolia",
+  zkSysTestnet = "zkSysTestnet"
 }
 
 export enum EthereumNetworkNames {
-  rollux = "rollux"
+  rollux = "rollux",
+  zkSyncTestnet = "zkSyncTestnet",
+  zkSysTestnet = "zkSysTestnet"
 }
 
 export enum AavePools {
@@ -272,6 +277,7 @@ export interface iParamsPerNetworkAll<T>
 
 export interface iEthereumParamsPerNetwork<T> {
   [eEthereumNetwork.rollux]: T;
+  [eEthereumNetwork.zkSyncTestnet]: T;
 }
 
 
